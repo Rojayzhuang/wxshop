@@ -1,4 +1,4 @@
-package com.rojay.wxshop.servicce;
+package com.rojay.wxshop.service;
 
 import com.rojay.wxshop.generate.User;
 import org.apache.shiro.SecurityUtils;

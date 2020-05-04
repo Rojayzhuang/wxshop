@@ -1,9 +1,9 @@
 package com.rojay.wxshop.controller;
 
-import com.rojay.wxshop.dao.GoodsDao;
+import com.rojay.wxshop.entity.PageResponse;
 import com.rojay.wxshop.entity.Response;
 import com.rojay.wxshop.generate.Goods;
-import com.rojay.wxshop.servicce.GoodsService;
+import com.rojay.wxshop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -72,8 +72,19 @@ public class GoodsController {
      * "message": "Unauthorized"
      * }
      */
+    /**
+     * @param pageNum  页数
+     * @param pageSize 页
+     * @param shopId   商品id
+     * @return 分页
+     */
     // @formatter:on
-    public void getGoods() {
+    @GetMapping("/goods")
+    public @ResponseBody
+    PageResponse<Goods> getGoods(@RequestParam("pageNum") Integer pageNum,
+                                 @RequestParam("pageSize") Integer pageSize,
+                                 @RequestParam(value = "shopId", required = false) Integer shopId) {
+        return goodsService.getGoods(pageNum, pageSize, shopId);
     }
 
 
@@ -124,8 +135,7 @@ public class GoodsController {
     // @formatter:on
 
     /**
-     *
-     * @param goods 商品
+     * @param goods    商品
      * @param response 响应体
      * @return 接口文档定义的返回值
      */
@@ -144,7 +154,6 @@ public class GoodsController {
             return Response.of(e.getMessage(), null);
         }
     }
-
 
     /**
      * 数据清洗，将前端输入的数据规范
@@ -203,7 +212,23 @@ public class GoodsController {
      * }
      */
     // @formatter:on
-    public void updateGoods() {
+
+    /**
+     *
+     * @param goods
+     * @param response
+     * @return 更新后的结果
+     */
+    public Response<Goods> updateGoods(Goods goods, HttpServletResponse response) {
+        try {
+            return Response.of(goodsService.updateGoods(goods));
+        } catch (GoodsService.NotAuthorizedForShopException e) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            return Response.of(e.getMessage(), null);
+        } catch (GoodsService.ResourceNotFoundException e) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            return Response.of(e.getMessage(), null);
+        }
     }
 
 
@@ -244,8 +269,7 @@ public class GoodsController {
     // @formatter:on
 
     /**
-     *
-     * @param goodsId 商品id
+     * @param goodsId  商品id
      * @param response 返回值
      * @return 不同情况的返回信息
      */
@@ -259,7 +283,7 @@ public class GoodsController {
             //没有权限时
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             return Response.of(e.getMessage(), null);
-        } catch (GoodsDao.ResourceNotFoundException e) {
+        } catch (GoodsService.ResourceNotFoundException e) {
             //未找到商品时
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return Response.of(e.getMessage(), null);

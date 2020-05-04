@@ -9,6 +9,11 @@ package com.rojay.wxshop.entity;
  * @version 1.0.0
  * @createTime 2020年05月03日  23:48:44
  */
-public class DataStatus {
-    public static String DELETE_STATUS = "deleted";
+public enum  DataStatus {
+    OK(),
+    DELETED();
+
+    public String getName() {
+        return name().toLowerCase();
+    }
 }

@@ -1,4 +1,4 @@
-package com.rojay.wxshop.servicce;
+package com.rojay.wxshop.service;
 
 
 import org.apache.shiro.authc.AuthenticationException;

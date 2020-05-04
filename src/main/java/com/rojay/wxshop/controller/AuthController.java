@@ -1,9 +1,9 @@
 package com.rojay.wxshop.controller;
 
 import com.rojay.wxshop.entity.LoginResponse;
-import com.rojay.wxshop.servicce.AuthService;
-import com.rojay.wxshop.servicce.TelVerificationService;
-import com.rojay.wxshop.servicce.UserContext;
+import com.rojay.wxshop.service.AuthService;
+import com.rojay.wxshop.service.TelVerificationService;
+import com.rojay.wxshop.service.UserContext;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.http.HttpStatus;

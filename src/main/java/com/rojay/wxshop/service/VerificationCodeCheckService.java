@@ -1,4 +1,4 @@
-package com.rojay.wxshop.servicce;
+package com.rojay.wxshop.service;
 
 import org.springframework.stereotype.Service;
 

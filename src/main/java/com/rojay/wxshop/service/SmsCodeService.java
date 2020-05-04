@@ -1,4 +1,4 @@
-package com.rojay.wxshop.servicce;
+package com.rojay.wxshop.service;
 
 /**
  * 登录验证码伪实现

@@ -1,9 +1,9 @@
 package com.rojay.wxshop.config;
 
-import com.rojay.wxshop.servicce.ShiroRealm;
-import com.rojay.wxshop.servicce.UserLoginInterceptor;
-import com.rojay.wxshop.servicce.UserService;
-import com.rojay.wxshop.servicce.VerificationCodeCheckService;
+import com.rojay.wxshop.service.ShiroRealm;
+import com.rojay.wxshop.service.UserLoginInterceptor;
+import com.rojay.wxshop.service.UserService;
+import com.rojay.wxshop.service.VerificationCodeCheckService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;

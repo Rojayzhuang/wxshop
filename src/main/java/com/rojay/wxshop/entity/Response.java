@@ -19,6 +19,9 @@ public class Response<T> {
         return new Response<T>(null, data);
     }
 
+    public Response() {
+    }
+
     public Response(String message, T data) {
         this.message = message;
         this.data = data;
@@ -26,5 +29,9 @@ public class Response<T> {
 
     public T getData() {
         return data;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
